@@ -41,7 +41,7 @@ int deleteBotByIndex(BotRepo* bots, int index){
 
 int isBotInsertable(BotRepo* bots, Bot newBot){
     int botIndex;
-    for(botIndex = 0; botIndex < bots->length; botIndex++){
+    for(botIndex = 0; botIndex < (*bots).length; botIndex++){
         if((*bots).bots[botIndex].serialNumber == newBot.serialNumber){
             return 0;
         }
@@ -52,10 +52,30 @@ int isBotInsertable(BotRepo* bots, Bot newBot){
 
 int addNewBot(BotRepo* bots, Bot newBot){
     
-  //  if(isBotInsertable(bots, newBot) == 0)
- //       return 0;
-    
-    bots->bots[bots->length] = newBot;
-    bots->length++;
+    if(isBotInsertable(bots, newBot) == 0)
+        return 0;
+    (*bots).bots[(*bots).length] = newBot;
+    (*bots).length++;
+    return 1;
+}
+
+
+int isBotInRepo(BotRepo* bots, int serialNumber){
+    int botIndex;
+    for(botIndex = 0; botIndex < (*bots).length; botIndex++){
+        if((*bots).bots[botIndex].serialNumber == serialNumber){
+            return botIndex;
+        }
+    }
+    return -1;
+
+}
+
+int updateBot(BotRepo* bots, Bot updateBot){
+    int botPosition = isBotInRepo(bots, updateBot.serialNumber);
+    if(botPosition== -1){
+        return 0;
+    }
+    (*bots).bots[botPosition] = updateBot;
     return 1;
 }

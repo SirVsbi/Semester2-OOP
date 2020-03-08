@@ -40,3 +40,6 @@ int isBotInsertable(BotRepo*, Bot);
 */
 int addNewBot(BotRepo*, Bot);
 #endif
+
+int updateBot(BotRepo*, Bot);
+int isBotInRepo(BotRepo*, int);

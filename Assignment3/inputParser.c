@@ -14,7 +14,7 @@ int commandParser(char* command){
     if(strlen(command) < 3){
         return 0;
     }
-    char* commandCopy;
+    char commandCopy[100];
     strcpy(commandCopy, command);
 
     char* token = strtok(commandCopy, delimiter);
@@ -37,7 +37,7 @@ int addParser(char* command, BotRepo bots){
 
 
 char* listParser(char* command){
-    char* commandCopy; 
+    char commandCopy[100]; 
     strcpy(commandCopy, command);
     char* token = strtok(commandCopy, delimiter);
     token = strtok(NULL, delimiter);
@@ -53,7 +53,7 @@ char* listParser(char* command){
 
 int deleteParser(char* command){
     int parsedInput; 
-    char* commandCopy;
+    char commandCopy[100];
     strcpy(commandCopy, command);
     char* token = strtok(commandCopy, delimiter);
     token = strtok(NULL, delimiter);
@@ -97,14 +97,17 @@ Bot* botArgumentParser(char* command){
     int energyCapacity;
 
     int argumentParsingIndex;
+    Bot* tempBot = (Bot*)malloc(sizeof(Bot));
 
-    char* commandCopy;
+    char commandCopy[100];
+
     strcpy(commandCopy, command);
+                
     char* tokens = strtok(commandCopy, delimiter);
     tokens = strtok(NULL, delimiter);
-
     //parse the serial number
     serialNumber = NumberParser(tokens);
+
     if(serialNumber == -1){
         return NULL;
     }
@@ -133,12 +136,12 @@ Bot* botArgumentParser(char* command){
         return NULL;
     }
 
-    Bot* tempBot = (Bot*)malloc(sizeof(Bot));
-    setSerialNumber(tempBot, serialNumber);
-    setState(tempBot, state);
-    setSpecialization(tempBot, specialization);
-    setEnergyCapacity(tempBot, energyCapacity);
 
+    (*tempBot).serialNumber = serialNumber;
+    strcpy((*tempBot).state, state);
+    strcpy((*tempBot).specialization, specialization);
+    (*tempBot).energyCapacity = energyCapacity;
+    
     return tempBot;
 
     
