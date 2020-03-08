@@ -17,6 +17,10 @@ int ui(BotRepo bots){
     int deleteResult = 0;
     int specificationCounter = 0;
     char* specialization;
+    int addResult = 0;
+
+
+    Bot* tempBot;
     while(exitCode != 1){
         fflush(stdin);
         fgets(buffer, sizeof buffer, stdin);
@@ -27,13 +31,22 @@ int ui(BotRepo bots){
             printf("Bad command, bad user \n");
             break;
         case 1: 
+            addResult = 0;
+            tempBot = botArgumentParser(buffer);
+            if(tempBot == NULL){
+                printf("Invalid type of input\n");
+            }
+            else{
+                addResult = addNewBot(&bots, *tempBot);
+                if(addResult == 0){
+                    printf("A bot with this serial number already exists\n");
+                }
+                else{
+                    printf("New bot successfuly added\n");
+                }
+            }
+            free(tempBot);
             break;
-
-        /*
-            To print all the bots: 
-                1.) get the length of the bot repo
-                2.) iterate though the bot repo 
-        */ 
 
 
         case 3: 
@@ -62,19 +75,26 @@ int ui(BotRepo bots){
                 printf("Bot with serial number: %d, deleted!\n", deleteArgument);
             }
             break;
+
+        /*
+            To print all the bots: 
+                1.) get the length of the bot repo
+                2.) iterate though the bot repo 
+        */ 
+
         case 4: 
             specialization = listParser(buffer);
             if(specialization == NULL){
                 botRepoLength = bots.length;
                 for(botIndex = 0; botIndex < botRepoLength; botIndex++){
-                    printBot(bots, botIndex);
+                    printBotRepository(bots, botIndex);
                 }
             }
             else{
                 specificationCounter = 0;
                 for(botIndex = 0; botIndex < botRepoLength; botIndex++){
                     if(strcmp(bots.bots[botIndex].specialization, specialization) == 0){
-                        printBotSpecification(bots, botIndex, specificationCounter);
+                        printBotRepositorySpecification(bots, botIndex, specificationCounter);
                         specificationCounter++;
                     }
                 }
@@ -99,7 +119,7 @@ int ui(BotRepo bots){
 
 
 
-void printBot(BotRepo bots, int index){
+void printBotRepository(BotRepo bots, int index){
     Bot currentBot = bots.bots[index];
     printf("Current bot index: %d \n", index);
     printf("Serial number: %d \n", getSerialNumber(currentBot));
@@ -112,7 +132,7 @@ void printBot(BotRepo bots, int index){
 } 
 
 
-void printBotSpecification(BotRepo bots, int repoIndex, int counterIndex){
+void printBotRepositorySpecification(BotRepo bots, int repoIndex, int counterIndex){
     Bot currentBot = bots.bots[repoIndex];
     printf("Current bot index: %d \n", counterIndex);
     printf("Serial number: %d \n", getSerialNumber(currentBot));

@@ -7,8 +7,8 @@
 
 
 int ui(BotRepo);
-void printBot(BotRepo, int);
-void printBotSpecification(BotRepo, int, int);
+void printBotRepository(BotRepo, int);
+void printBotRepositorySpecification(BotRepo, int, int);
 
 
 

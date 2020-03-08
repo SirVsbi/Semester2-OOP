@@ -40,6 +40,19 @@ char* listParser(char* );
 int deleteParser(char* );
 
 
+/*
+    Parses the arguments given to the add/update function and returns a pointer to a bot 
+    containing the information given. 
+    If there was a problem parsing the arguments, returns a NULL Bot 
+*/
+Bot* botArgumentParser(char*);
+
+/*
+    Parses a number from a strtok token char array 
+    Returns the serial number as int if it could've been parsed 
+    Returns -1 otherwise
+*/
+int NumberPraser(char* );
 
 
 #endif 

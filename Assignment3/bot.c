@@ -21,20 +21,20 @@ int getEnergyCapacity(Bot currentBot){
     return currentBot.energyCapacity;
 }
 
-void setSerialNumber(Bot currentBot, int newSerialNumber){
-    currentBot.serialNumber = newSerialNumber;
+void setSerialNumber(Bot* currentBot, int newSerialNumber){
+    currentBot->serialNumber = newSerialNumber;
 
 }
 
-void setState(Bot currentBot, char* newState){
-    strcpy(currentBot.state, newState);
+void setState(Bot* currentBot, char* newState){
+    strcpy(currentBot->state, newState);
 
 }
 
-void setSpecialization(Bot currentBot, char* newSpecialization){
-    strcpy(currentBot.specialization, newSpecialization);
+void setSpecialization(Bot* currentBot, char* newSpecialization){
+    strcpy(currentBot->specialization, newSpecialization);
 }
 
-void setEnergyCapacity(Bot currentBot, int newEnergyCapacity){
-    currentBot.energyCapacity = newEnergyCapacity;
+void setEnergyCapacity(Bot* currentBot, int newEnergyCapacity){
+    currentBot->energyCapacity = newEnergyCapacity;
 }

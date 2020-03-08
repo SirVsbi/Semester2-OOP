@@ -5,7 +5,7 @@
 
 #include "botController.h"
 
-
+#define NUMBER_OF_ARGUMENTS_ADD_UPDATE 4
 #define COMMAND_NUMBER 5
 const char* commands[COMMAND_NUMBER] = {"add", "update", "delete", "list", "exit"};
 const char* delimiter = " ,\n\r";
@@ -53,7 +53,7 @@ char* listParser(char* command){
 
 int deleteParser(char* command){
     int parsedInput; 
-    char* commandCopy, endpointer;
+    char* commandCopy;
     strcpy(commandCopy, command);
     char* token = strtok(commandCopy, delimiter);
     token = strtok(NULL, delimiter);
@@ -72,3 +72,82 @@ int deleteParser(char* command){
 
     
 }
+
+int NumberParser(char* token){
+    if(token == NULL){
+        return -1;
+    }
+
+    errno = 0;
+
+    int parsedNumber = strtol(token, NULL, 10);
+    if(errno == ERANGE || errno != 0){
+        return -1;
+    }
+
+    return parsedNumber;
+
+}
+
+
+Bot* botArgumentParser(char* command){
+    int serialNumber;
+    char state[100];
+    char specialization[100];
+    int energyCapacity;
+
+    int argumentParsingIndex;
+
+    char* commandCopy;
+    strcpy(commandCopy, command);
+    char* tokens = strtok(commandCopy, delimiter);
+    tokens = strtok(NULL, delimiter);
+
+    //parse the serial number
+    serialNumber = NumberParser(tokens);
+    if(serialNumber == -1){
+        return NULL;
+    }
+
+    //parse the state
+    tokens = strtok(NULL, delimiter);
+    if(tokens == NULL){
+        return NULL;
+    }
+    strcpy(state, tokens);
+
+    //parse the specialization
+    tokens = strtok(NULL, delimiter);
+    if(tokens == NULL){
+        return NULL;
+    }
+    strcpy(specialization, tokens);
+
+    //parse the energy capacity
+    tokens = strtok(NULL, delimiter);
+    if(tokens == NULL){
+        return NULL;
+    }
+    energyCapacity = NumberParser(tokens);
+    if(energyCapacity == -1){
+        return NULL;
+    }
+
+    Bot* tempBot = (Bot*)malloc(sizeof(Bot));
+    setSerialNumber(tempBot, serialNumber);
+    setState(tempBot, state);
+    setSpecialization(tempBot, specialization);
+    setEnergyCapacity(tempBot, energyCapacity);
+
+    return tempBot;
+
+    
+
+    
+
+
+
+
+}
+
+

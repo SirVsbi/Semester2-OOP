@@ -26,4 +26,17 @@ int findBotBySerialNumber(BotRepo, int);
 */ 
 int deleteBotByIndex(BotRepo*, int);
 
+
+/*
+    Returns 1 if a given bot can be inserted into the BotRepo
+    Returns 0 otherwise
+*/
+int isBotInsertable(BotRepo*, Bot);
+
+/*
+    Inserts a new bot into the BotRepo 
+    Returns 1 if the insert was successful 
+    Returns 0 otherwise 
+*/
+int addNewBot(BotRepo*, Bot);
 #endif

@@ -18,10 +18,11 @@ char* getState(Bot);
 char* getSpecialization(Bot);
 int getEnergyCapacity(Bot);
 
-void setSerialNumber(Bot, int);
-void setState(Bot, char*);
-void setSpecialization(Bot, char*);
-void setEnergyCapacity(Bot, int);
+void setSerialNumber(Bot*, int);
+void setState(Bot*, char*);
+void setSpecialization(Bot*, char*);
+void setEnergyCapacity(Bot*, int);
+
 
 
 
