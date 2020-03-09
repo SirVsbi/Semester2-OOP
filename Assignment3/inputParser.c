@@ -10,6 +10,7 @@
 const char* commands[COMMAND_NUMBER] = {"add", "update", "delete", "list", "exit"};
 const char* delimiter = " ,\n\r";
 
+
 int commandParser(char* command){
     if(strlen(command) < 3){
         return 0;

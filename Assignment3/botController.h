@@ -9,7 +9,15 @@ typedef struct{
 } BotRepo;
 
 
+/*
+    Returns the length of the bot repo 
+*/
 int getBotsLength(BotRepo);
+
+
+/*
+    Returns a bot by a given index 
+*/
 Bot getBotByIndex(BotRepo, int);
 
 
@@ -39,7 +47,20 @@ int isBotInsertable(BotRepo*, Bot);
     Returns 0 otherwise 
 */
 int addNewBot(BotRepo*, Bot);
+
+/*
+    Updates a bot with a given serial number
+    Returns 1 if the update was successful
+    Returns 0 if the bot is not in the repo 
+*/
+int updateBot(BotRepo*, Bot);
+
+/*
+    Finds a bot in the BotRepo
+    Returns the index of the bot
+    Returns -1 if bot is not in the repo 
+
+*/
+int isBotInRepo(BotRepo*, int);
 #endif
 
-int updateBot(BotRepo*, Bot);
-int isBotInRepo(BotRepo*, int);

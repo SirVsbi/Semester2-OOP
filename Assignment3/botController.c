@@ -10,10 +10,10 @@ Bot getBotByIndex(BotRepo bots,int index){
 }
 
 int findBotBySerialNumber(BotRepo bots, int serialNumber){
-    int i;
-    for(i = 0;i < bots.length; i++){
-        if(bots.bots[i].serialNumber == serialNumber){
-            return i;
+    int botIndex;
+    for(botIndex = 0;botIndex < bots.length; botIndex++){
+        if(bots.bots[botIndex].serialNumber == serialNumber){
+            return botIndex;
         }
     }
     return -1;

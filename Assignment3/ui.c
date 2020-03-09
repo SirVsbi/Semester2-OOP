@@ -7,7 +7,6 @@
 #include <string.h>
 
 int ui(BotRepo bots){
-
     char buffer[200];
     int commandValue = 0;
     int botIndex;
@@ -19,10 +18,10 @@ int ui(BotRepo bots){
     char* specialization;
     int addResult = 0;
     int updateResult = 0;
-
-
     Bot* tempBot;
     tempBot = (Bot*)malloc(sizeof(Bot));
+
+
     while(exitCode != 1){
         fflush(stdin);
         fgets(buffer, sizeof buffer, stdin);
@@ -49,9 +48,7 @@ int ui(BotRepo bots){
                     break;
                 }
             }
-
             break;
-
         case 2: 
             updateResult = 0;
             tempBot = botArgumentParser(buffer);
@@ -69,7 +66,6 @@ int ui(BotRepo bots){
                     break;
                 }
             }
-
             break;
         case 3: 
             deleteArgument = deleteParser(buffer);
@@ -97,18 +93,10 @@ int ui(BotRepo bots){
                 printf("Bot with serial number: %d, deleted!\n", deleteArgument);
             }
             break;
-
-        /*
-            To print all the bots: 
-                1.) get the length of the bot repo
-                2.) iterate though the bot repo 
-        */ 
-
         case 4: 
             botRepoLength = bots.length;
             specialization = listParser(buffer);
             if(specialization == NULL){
-
                 for(botIndex = 1; botIndex < botRepoLength; botIndex++){
                     printBotRepository(bots, botIndex);
                 }
@@ -136,10 +124,7 @@ int ui(BotRepo bots){
             printf("Bad command, bad user \n");
         }
     }
-
     return 0;
-
-
 }
 
 
@@ -151,8 +136,6 @@ void printBotRepository(BotRepo bots, int index){
     printf("Specialization: %s\n", currentBot.specialization);
     printf("Energy capacity: %d\n", getEnergyCapacity(currentBot));
     
-
-
 } 
 
 
@@ -162,7 +145,5 @@ void printBotRepositorySpecification(BotRepo bots, int repoIndex, int counterInd
     printf("State: %s \n", currentBot.state);
     printf("Specialization: %s\n", currentBot.specialization);
     printf("Energy capacity: %d\n", getEnergyCapacity(currentBot));
-    
-
 
 } 

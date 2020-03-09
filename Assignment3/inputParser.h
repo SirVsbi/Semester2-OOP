@@ -3,6 +3,7 @@
 #define INPUTPARSER_H
 
 
+
 /*
     Parses the command and returns the code of the command: 
     0 - invalid command 
