@@ -1,6 +1,8 @@
 #include "bot.h"
 #include "botController.h"
-
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 int getBotsLength(BotRepo bots){
     return bots.length;
 }
@@ -78,4 +80,27 @@ int updateBot(BotRepo* bots, Bot updateBot){
     }
     (*bots).bots[botPosition] = updateBot;
     return 1;
+}
+
+Bot* getBotsAsArray(BotRepo bots, char* specification){
+    Bot* botList = (Bot*)malloc(sizeof(Bot) * 100);
+    int botIndex;
+    int botListLength = 0;
+    for(botIndex = 1; botIndex < bots.length; botIndex++){
+        if(specification == NULL){
+            botList[botListLength++] = getBotByIndex(bots, botIndex);
+        }else{
+            Bot tempBot = getBotByIndex(bots, botIndex);
+            if(strcmp(tempBot.specialization, specification) == 0){
+                botList[botListLength++] = tempBot;
+            }
+        }
+    }
+    Bot tempBot;
+
+    tempBot.serialNumber = -111111;
+    botList[botListLength] = tempBot;
+    return botList;
+
+
 }
