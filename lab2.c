@@ -3,12 +3,14 @@
 #include <stdlib.h>
 
 int i;
-/* This swap only works with gcc on GNU/linux
+// This swap only works with gcc on GNU/linux
+/*
 static inline volatile void swap(volatile int firstNumber,volatile int secondNumber){
     asm ("" : "=r" (firstNumber), "=r" (secondNumber) : "0" (secondNumber), "1" (firstNumber) :);
 }
-
 */
+
+
 
 void swap(int *firstNumber, int *secondNumber){
     int temp;
@@ -88,7 +90,6 @@ int main(int argc, char** argv){
         char* tokens = strtok(buffer, " \n\r");
         numbers[numberOfNumbers++] = strtol(tokens, NULL, 10);
         while(tokens != NULL){
-           // printf("%s ", tokens);
             numbers[numberOfNumbers++] = strtol(tokens, NULL, 10);
             tokens = strtok(NULL, " \n\r");
         }
